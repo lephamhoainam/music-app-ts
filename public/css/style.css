@@ -46,3 +46,14 @@
     color: rgb(4, 190, 4);
 }
 /* End box head */
+
+/* Card img */
+.card-img-top {
+    height: 220px;
+    object-fit: cover;
+}
+
+.card-text {
+    min-height: 48px;
+}
+/* End card img */
