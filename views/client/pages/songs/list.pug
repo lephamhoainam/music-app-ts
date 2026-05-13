@@ -13,11 +13,11 @@ block main
                 .col-3.mb-3 
                     div.song-item
                         div.inner-image 
-                            a(href="/songs/detail/:slugSong")
+                            a(href=`/songs/detail/${item.slug}`)
                                 img(src=item.avatar)
                         div.inner-content 
                             div.inner-title 
-                                a(href="/songs/detail/:slugSong") #{item.title}
+                                a(href=`/songs/detail/${item.slug}`) #{item.title}
                             div.inner-singer 
                                 <i class="fa-solid fa-microphone"></i> #{item.infoSinger.fullname} 
                             div.inner-like 
