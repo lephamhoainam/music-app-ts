@@ -1,0 +1,26 @@
+extends ../../layouts/default.pug
+
+include ../../mixins/box-head.pug
+
+block main 
+    .container.my-3 
+        .row 
+            .col-12 
+                +box-head(pageTitle)
+
+        .row 
+            each item in songs
+                .col-3.mb-3 
+                    div.song-item
+                        div.inner-image 
+                            a(href="/songs/detail/:slugSong")
+                                img(src=item.avatar)
+                        div.inner-content 
+                            div.inner-title 
+                                a(href="/songs/detail/:slugSong") #{item.title}
+                            div.inner-singer 
+                                <i class="fa-solid fa-microphone"></i> #{item.infoSinger.fullname} 
+                            div.inner-like 
+                                <i class="fa-regular fa-heart"></i> #{item.like} 
+                            div.inner-time 
+                                <i class="fa-regular fa-clock"></i> Hôm qua                

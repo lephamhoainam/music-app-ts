@@ -1,8 +1,11 @@
 import { Express } from "express";
 import { topicRoute } from "./topic.route";
+import { songRoute } from "./song.route";
 
 const clientRoute = (app: Express): void => {
     app.use(`/topics`, topicRoute);
+
+    app.use(`/songs`, songRoute);
 }
 
 export default clientRoute;
