@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import Topic from "../../models/topic.model";
 import Song from "../../models/song.model";
 import Singer from "../../models/singer.model";
-import console from "node:console";
 
 // [GET] /songs/slugTopic
 export const list = async (req: Request, res: Response) => {
@@ -76,4 +75,45 @@ export const detail = async (req: Request, res: Response) => {
         singer: singer,
         topic: topic
     });
+}
+
+
+// [GET] /song/detail/slugSong
+export const like = async (req: Request, res: Response) => {
+    const typeLike = req.params.typeLike;
+    const idSong: string = req.params.idSong as string;
+
+    const song = await Song.findOne({
+        _id: idSong
+    });
+    
+    const currentLike = song?.like || 0;
+    const newLike = currentLike + 1;
+    const oldLike = currentLike - 1;
+
+    if(typeLike === "yes") {
+        await Song.updateOne({
+            _id: song?.id
+        }, {
+            like: newLike
+        });
+
+        res.json({
+            code: 200,
+            currentLike: newLike,
+            message: "Like thành công"
+        });
+    } else if(typeLike === "no") {
+        await Song.updateOne({
+            _id: song?.id
+        }, {
+            like: oldLike
+        });
+
+        res.json({
+            code: 200,
+            currentLike: oldLike,
+            message: "Bỏ like thành công"
+        });
+    }
 }

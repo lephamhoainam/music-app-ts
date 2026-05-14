@@ -16,14 +16,15 @@ block main
                             <i class="fa-solid fa-microphone"></i> #{singer.fullname}
                         div.inner-action.inner-topic
                             <i class="fa-solid fa-music"></i> #{topic.title}
-                        div.inner-action.inner-like 
-                            <i class="fa-regular fa-heart"></i> #{song.like}
+                        div.inner-action.inner-like(id-song=song.id)
+                            i(class="fa-regular fa-thumbs-up" data-number-like=song.like) 
+                            span #{song.like}
                         div.inner-action.inner-heart
                             <i class="fa-solid fa-heart-circle-plus"></i> Thêm vào yêu thích
                     
                     .inner-play 
                         .inner-avatar 
-                            img(src=song.avatar, alt="", srcset="")
+                            img(src=song.avatar, alt="Thumbnail bài hát", srcset="")
                         .inner-audio 
                             div#aplayer(data-song=song data-singer=singer)
 
