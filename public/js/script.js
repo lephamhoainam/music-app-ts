@@ -31,7 +31,7 @@ if(aplayer) {
 // End aplayer 
 
 
-// Tính năng like và removedLike bài hát 
+// Tính năng like và unLike bài hát 
 const like = document.querySelector(".inner-action.inner-like");
 if(like) {
     like.addEventListener("click", () => {
@@ -70,4 +70,34 @@ if(like) {
         // Kết thúc gửi số lượng like
     });
 }
-// Kết thúc tính năng like và removedLike bài hát 
+// Kết thúc tính năng like và unLike bài hát
+
+
+// Tính năng thêm và hủy bài hát yêu thích 
+const buttonFavorite = document.querySelector("[button-favorite]");
+if(buttonFavorite) {
+    buttonFavorite.addEventListener("click", () => {
+        const songId = buttonFavorite.getAttribute("button-favorite");
+
+        const icon = buttonFavorite.querySelector("i");
+
+        icon.classList.toggle("fa-regular");
+        icon.classList.toggle("fa-solid");
+
+        const isFavorite = icon.classList.contains("fa-solid");
+        const typeFavorite = isFavorite ? "Favorite" : "unFavorite";
+
+        const option = {
+            method: "PATCH" 
+        }
+
+        // Gửi favorite
+        fetch(`/songs/favorite/${typeFavorite}/${songId}`, option)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+        });
+        // Kết thúc gửi favorite
+    });
+}
+// Kết thúc tính năng thêm và hủy bài hát yêu thích 

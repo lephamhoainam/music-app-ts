@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import Topic from "../../models/topic.model";
 import Song from "../../models/song.model";
 import Singer from "../../models/singer.model";
+import FavoriteSong from "../../models/favorite-song.model";
 
 // [GET] /songs/slugTopic
 export const list = async (req: Request, res: Response) => {
@@ -69,6 +70,12 @@ export const detail = async (req: Request, res: Response) => {
     }).select("title");
     // Kết thúc lấy ra chủ đề
 
+    const favoriteSong = await FavoriteSong.findOne({
+        songId: song?.id
+    });
+
+    (song as any).isFavoriteSong = favoriteSong ? true : false;
+
     res.render("client/pages/songs/detail", {
         pageTitle: song?.title,
         song: song,
@@ -78,7 +85,7 @@ export const detail = async (req: Request, res: Response) => {
 }
 
 
-// [GET] /song/detail/slugSong
+// [PATCH] /song/like/:typeLike/:idSong
 export const like = async (req: Request, res: Response) => {
     const typeLike = req.params.typeLike;
     const idSong: string = req.params.idSong as string;
@@ -115,5 +122,39 @@ export const like = async (req: Request, res: Response) => {
             currentLike: oldLike,
             message: "Bỏ like thành công"
         });
+    }
+}
+
+
+// [PATCH] /song/favorite/:typeFavorite/:idSong
+export const favorite = async (req: Request, res: Response) => {
+    const typeFavorite: string = req.params.typeFavorite as string;
+    const idSong: string = req.params.idSong as string;
+
+    switch (typeFavorite) {
+        case "Favorite": {
+            const existFavoriteSong = await FavoriteSong.findOne({
+                songId: idSong
+            });
+
+            if(!existFavoriteSong) {
+                const record = new FavoriteSong({
+                    userId: "",
+                    songId: idSong
+                });
+                await record.save();
+            }
+
+            break;
+        }
+        case "unFavorite": {
+            await FavoriteSong.deleteOne({
+                songId: idSong
+            });
+
+            break;
+        }
+        default:
+            break;
     }
 }

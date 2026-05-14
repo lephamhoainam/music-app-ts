@@ -19,8 +19,11 @@ block main
                         div.inner-action.inner-like(id-song=song.id)
                             i(class="fa-regular fa-thumbs-up" data-number-like=song.like) 
                             span #{song.like}
-                        div.inner-action.inner-heart
-                            <i class="fa-solid fa-heart-circle-plus"></i> Thêm vào yêu thích
+                        div.inner-action.inner-heart(button-favorite=song.id)
+                            if(song.isFavoriteSong)
+                                <i class="fa-solid fa-heart"></i> Thêm vào yêu thích    
+                            else
+                                <i class="fa-regular fa-heart"></i> Thêm vào yêu thích
                     
                     .inner-play 
                         .inner-avatar 
