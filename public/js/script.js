@@ -57,8 +57,12 @@ if(like) {
 
         const typeLike = isLiked ? "yes" : "no";
 
+        const option = {
+            method: "PATCH" 
+        }
+
         // Gửi số lượng like
-        fetch(`/songs/like/${typeLike}/${songId}`)
+        fetch(`/songs/like/${typeLike}/${songId}`, option)
             .then(res => res.json())
             .then(data => {
                 console.log(data);
