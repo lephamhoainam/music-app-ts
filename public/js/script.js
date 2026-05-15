@@ -101,3 +101,38 @@ if(buttonFavorite) {
     });
 }
 // Kết thúc tính năng thêm và hủy bài hát yêu thích 
+
+
+// Tính năng checkbox-multi
+const checkBoxMulti = document.querySelector("[checkbox-multi]");
+if(checkBoxMulti) {
+    const inputCheckAll = checkBoxMulti.querySelector("input[name=checkall]");
+    const inputIds = checkBoxMulti.querySelectorAll("input[name=id]");
+
+    console.log(inputCheckAll);
+    console.log(inputIds);
+
+    inputCheckAll.addEventListener("click", () => {
+        if(inputCheckAll.checked) {
+            inputIds.forEach(input => {
+                input.checked = true;
+            });
+        } else {
+            inputIds.forEach(input => {
+                input.checked = false;
+            });
+        }
+    });
+
+    inputIds.forEach(input => {
+        input.addEventListener("click", () => {
+            const countChecked = checkBoxMulti.querySelectorAll("input[name='id']:checked").length;
+            if(countChecked == inputIds.length) {
+                inputCheckAll.checked = true;
+            } else {
+                inputCheckAll.checked = false;
+            }
+        })
+    })
+}
+// Kết thúc tính năng checkbox-multi

@@ -1,0 +1,36 @@
+extends ../../layouts/default.pug
+
+include ../../mixins/box-head.pug
+
+block main 
+    .container.my-3 
+        .row 
+            .col-12 
+                +box-head(pageTitle)
+    
+        .card.mb-3
+            .card-header Danh sách bài hát yêu thích
+            .card-body
+                table(class="table table-hover table-sm" checkbox-multi) 
+                    thead 
+                        tr  
+                            th 
+                                input(type="checkbox" name="checkall")
+                            th STT  
+                            th Ảnh 
+                            th Tên bài hát
+                            th Nghệ sĩ
+                            th 
+                                <i class="fa-regular fa-clock"></i>
+                    tbody 
+                        each item, index in favoriteSongs
+                            tr.table-row 
+                                td 
+                                    input(type="checkbox" name="id" value = item.id)
+                                td #{index + 1}
+                                td
+                                    img(src=item.infoSong.avatar, alt=item.infoSong.title width="50px" height="50px")
+                                td 
+                                    a(href=`/songs/detail/${item.infoSong.slug}`)  #{item.infoSong.title}
+                                td #{item.infoSinger.fullname}
+                                td 

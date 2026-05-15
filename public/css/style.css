@@ -210,3 +210,10 @@
     white-space: pre-line;
 }
 /* End detail song */
+
+
+/* Table img */
+.table-row td img {
+    border-radius: 10%;
+}
+/* End table img */
