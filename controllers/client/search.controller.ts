@@ -6,6 +6,7 @@ import Singer from "../../models/singer.model";
 import { convertStringToSlug } from "../../helpers/convertStringToSlug";
 
 export const resultSearch = async (req: Request, res: Response) => {
+    const type = req.params.type;
     const keyword: string = req.query.keyword as string;
     let newSongs = [];
 
@@ -24,12 +25,12 @@ export const resultSearch = async (req: Request, res: Response) => {
                 { title: keywordRegex },
                 { slug: keywordRegexSlug } 
             ]
-        });
+        }).select("-description -topicId -status -lyrics -like");
 
         for(const song of songs) {
             const infoSinger = await Singer.findOne({
                 _id: song.singerId
-            });
+            }).select("fullname avatar");
 
             (song as any).infoSinger = infoSinger;
             newSongs.push({
@@ -39,9 +40,26 @@ export const resultSearch = async (req: Request, res: Response) => {
         }
     }
 
-    res.render("client/pages/search/result", {
-        pageTitle: `Kết quả tìm kiếm bài hát: ${keyword}`,
-        keyword: keyword,
-        songs: newSongs
-    });
+    switch (type) {
+        case "result": {
+            res.render("client/pages/search/result", {
+                pageTitle: `Kết quả tìm kiếm bài hát: ${keyword}`,
+                keyword: keyword,
+                songs: newSongs
+            });
+
+            break;
+        } 
+        case "suggest": {
+            res.json({
+                code: 200, 
+                message: "Thành công",
+                songs: newSongs
+            });
+
+            break;
+        }
+        default:
+            break;
+    }
 }

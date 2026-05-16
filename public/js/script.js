@@ -87,12 +87,13 @@ if(buttonFavorite) {
         const isFavorite = icon.classList.contains("fa-solid");
         const typeFavorite = isFavorite ? "Favorite" : "unFavorite";
 
+        // Gửi favorite
+        const link = `/songs/favorite/${typeFavorite}/${songId}`;
         const option = {
             method: "PATCH" 
         }
 
-        // Gửi favorite
-        fetch(`/songs/favorite/${typeFavorite}/${songId}`, option)
+        fetch(link, option)
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -136,3 +137,49 @@ if(checkBoxMulti) {
     })
 }
 // Kết thúc tính năng checkbox-multi
+
+
+// Box-search 
+const boxSearch = document.querySelector(".box-search");
+if(boxSearch) {
+    const input = boxSearch.querySelector("input[name='keyword']");
+    const boxSuggest = boxSearch.querySelector(".inner-suggest");
+
+    input.addEventListener("keyup", () => {
+        const keyword = input.value;
+
+        // Gửi search keyword suggest
+        const link = `/search/suggest?keyword=${keyword}`;
+
+        fetch(link)
+            .then(res => res.json())
+            .then(data => {
+                const songs = data.songs;
+                if(songs.length > 0) {
+                    boxSuggest.classList.add("show");
+
+                    const htmls = songs.map(song => {
+                        return `
+                            <a class="inner-item" href="/songs/detail/${song._doc.slug}">
+                                <div class="inner-image">
+                                    <img src=${song._doc.avatar} alt=${song._doc.title} srcset="">
+                                </div>
+
+                                <div class="inner-info">
+                                    <div class="inner-title">${song._doc.title}</div>
+                                    <div class="inner-singer">${song.infoSinger.fullname}</div>
+                                </div>
+                            </a>
+                        `;
+                    });
+
+                    const boxList = boxSuggest.querySelector(".inner-list");
+                    boxList.innerHTML = htmls.join("");
+                } else {
+                    boxSuggest.classList.remove("show");
+                }
+            });
+        // Kết thúc gửi search keyword suggest
+    });
+}
+// End box-search

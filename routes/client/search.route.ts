@@ -3,6 +3,6 @@ const router: Router = Router();
 
 import * as controller from "../../controllers/client/search.controller";
 
-router.get("/result", controller.resultSearch);
+router.get("/:type", controller.resultSearch);
 
 export const searchRoute: Router = router;
