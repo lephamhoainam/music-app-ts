@@ -26,7 +26,35 @@ if(aplayer) {
 
     ap.on('play', function () {
         avatar.style.animationPlayState = "running";
+        console.log(dataSong._id);
+        // Gửi số lượt listen
+        const link = `/songs/listen/${dataSong._id}`;
+        const option = {
+            method: "PATCH" 
+        }
+
+        fetch(link, option)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+        });
+        // Kết thúc gửi số lượt listen
     });
+
+    // ap.on('ended', function () {
+    //     // Gửi số lượt listen
+    //     const link = `/songs/listen/${songId}`;
+    //     const option = {
+    //         method: "PATCH" 
+    //     }
+
+    //     fetch(link, option)
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             console.log(data);
+    //     });
+    //     // Kết thúc gửi số lượt listen
+    // });
 }
 // End aplayer 
 
@@ -57,12 +85,13 @@ if(like) {
 
         const typeLike = isLiked ? "yes" : "no";
 
+        // Gửi số lượng like
+        const link = `/songs/like/${typeLike}/${songId}`;
         const option = {
             method: "PATCH" 
         }
 
-        // Gửi số lượng like
-        fetch(`/songs/like/${typeLike}/${songId}`, option)
+        fetch(link, option)
             .then(res => res.json())
             .then(data => {
                 console.log(data);

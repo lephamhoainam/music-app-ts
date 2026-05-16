@@ -41,7 +41,7 @@ export const list = async (req: Request, res: Response) => {
 }
 
 
-// [GET] /song/detail/slugSong
+// [GET] /songs/detail/slugSong
 export const detail = async (req: Request, res: Response) => {
     const slugSong: string = req.params.slugSong as string;
     const check = ({
@@ -85,7 +85,7 @@ export const detail = async (req: Request, res: Response) => {
 }
 
 
-// [PATCH] /song/like/:typeLike/:idSong
+// [PATCH] /songs/like/:typeLike/:idSong
 export const like = async (req: Request, res: Response) => {
     const typeLike = req.params.typeLike;
     const idSong: string = req.params.idSong as string;
@@ -126,7 +126,7 @@ export const like = async (req: Request, res: Response) => {
 }
 
 
-// [PATCH] /song/favorite/:typeFavorite/:idSong
+// [PATCH] /songs/favorite/:typeFavorite/:idSong
 export const favorite = async (req: Request, res: Response) => {
     const typeFavorite: string = req.params.typeFavorite as string;
     const idSong: string = req.params.idSong as string;
@@ -156,5 +156,34 @@ export const favorite = async (req: Request, res: Response) => {
         }
         default:
             break;
+    }
+}
+
+
+// [PATCH] /songs/listen/:idSong
+export const listen = async (req: Request, res: Response) => {
+    const idSong: string = req.params.idSong as string;
+    
+    if(idSong) {
+        const song = await Song.findOne({
+            _id: idSong, 
+        }).select("listen");
+
+        const numberListen: number = song?.listen as number + 1;
+        await Song.updateOne({
+            _id: idSong
+        }, {
+            listen: numberListen
+        });
+
+        const songNew = await Song.findOne({
+            _id: idSong
+        }).select("listen");
+
+        res.json({
+            code: 200, 
+            message: "Cập nhật lượt nghe thành công",
+            listen: songNew
+        });
     }
 }
