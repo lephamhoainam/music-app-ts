@@ -1,12 +1,20 @@
 header.header 
     .container 
         .row.align-items-center 
-            .col-3 
+            .col-2
                 .inner-logo 
                     a(href="/")
                         img(src="/images/logoMusicApp.png", alt="Logo music app", srcset="")
+
+            .col-4
+                .box-search 
+                    form(action="/search/result", method="get") 
+                        div.form-group.d-flex.mb-0 
+                            input.form-control(type="text" placeholder="Nhập từ khóa..." name="keyword" value=keyword)
+                            button.btn.btn-primary(type="submit") 
+                                <i class="fa-solid fa-magnifying-glass"></i>
             
-            .col-9 
+            .col-6
                 .inner-menu 
                     ul 
                         li 
