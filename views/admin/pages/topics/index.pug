@@ -34,5 +34,5 @@ block main
                                     a.status-badge.inactive(href="javascript:;") Dừng hoạt động 
                             td 
                                 a.btn.btn-secondary.btn-sm.mr-1(href=`/${prefixAdmin}/topics/detail/${item.id}`) Chi tiết 
-                                a.btn.btn-warning.btn-sm.mr-1(href=`/${prefixAdmin}/topics/detail/${item.id}`) Sửa 
-                                a.btn.btn-danger.btn-sm(href=`/${prefixAdmin}/topics/detail/${item.id}`) Xóa
+                                a.btn.btn-warning.btn-sm.mr-1(href=`/${prefixAdmin}/topics/edit/${item.id}`) Sửa 
+                                button.btn.btn-danger.btn-sm(button-delete data-id=item.id) Xóa
