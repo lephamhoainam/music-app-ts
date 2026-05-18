@@ -2,10 +2,21 @@
     .inner-menu
         ul.menu-list
             li 
-                a.menu-link(href=`${prefixAdmin}/dashboard`) Tổng quan
-            //- if(role.permissions.includes("product-category_view"))
-            //-     li 
-            //-         a.menu-link(href=`${prefixAdmin}/products-category`) Danh mục sản phẩm
+                a.menu-link(href=`/${prefixAdmin}/dashboard`) Tổng quan
+            li 
+                a.menu-link(href=`/${prefixAdmin}/topics`) Quản lý chủ đề
+            li 
+                a.menu-link(href=`/${prefixAdmin}/products-category`) Quản lý bài hát 
+            li 
+                a.menu-link(href=`/${prefixAdmin}/products-category`) Quản lý ca sĩ
+            li 
+                a.menu-link(href=`/${prefixAdmin}/products-category`) Phân quyền
+            li 
+                a.menu-link(href=`/${prefixAdmin}/products-category`) Tài khoản admin 
+            li 
+                a.menu-link(href=`/${prefixAdmin}/products-category`) Tài khoản user
+            li 
+                a.menu-link(href=`/${prefixAdmin}/products-category`) Cài đặt chung
             //- if(role.permissions.includes("product_view"))
             //-     li 
             //-         a.menu-link(href=`${prefixAdmin}/products`) Danh sách sản phẩm

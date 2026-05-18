@@ -102,15 +102,6 @@ body {
 }
 
 /* buttons */
-.header .btn {
-    border: none;
-    border-radius: 10px;
-    padding: 7px 16px;
-    font-size: 14px;
-    font-weight: 500;
-    transition: 0.25s;
-}
-
 /* account */
 .header .btn-a {
     background: #3B82F6;
@@ -139,8 +130,40 @@ body {
 /* Content  */
 .main {
     margin-left: 210px;
-    padding-top: 65px;
+    padding: 85px 24px 24px;
     background: #ffffff;
     min-height: 100vh;
 }
 /* end content  */
+
+/* Badge */
+.status-badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none !important;
+    transition: 0.2s;
+}
+
+.status-badge.active {
+    background: #16a34a;
+    color: #ffffff;
+}
+
+.status-badge.active:hover {
+    background: #15803d;
+    color: #ffffff;
+}
+
+.status-badge.inactive {
+    background: #7f1d1d;
+    color: #ffffff;
+}
+
+.status-badge.inactive:hover {
+    background: #641717;
+    color: #ffffff;
+}
+/* End badge */

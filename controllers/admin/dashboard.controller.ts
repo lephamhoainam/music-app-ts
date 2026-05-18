@@ -4,6 +4,6 @@ import { Request, Response } from "express";
 export const index = async (req: Request, res: Response) => {
     
     res.render("admin/pages/dashboard/index", {
-        pageTitle: "Bài hát yêu thích"
+        pageTitle: "Trang tổng quan - ADMIN"
     });
 }
