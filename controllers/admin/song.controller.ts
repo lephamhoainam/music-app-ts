@@ -31,3 +31,11 @@ export const index = async (req: Request, res: Response) => {
         songs: songs
     });
 }
+
+
+// [GET] /admin/songs/create
+export const create = async (req: Request, res: Response) => {
+    res.render("admin/pages/songs/create", {
+        pageTitle: "Tạo mới bài hát"
+    });
+}

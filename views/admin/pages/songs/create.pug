@@ -1,0 +1,84 @@
+extends ../../layouts/default.pug
+
+block main 
+    .content-wrapper
+        form.song-form(action="/songs/create" method="POST" enctype="multipart/form-data")
+            .page-header.d-flex.justify-content-between.align-items-start.mb-4
+                .header-left
+                    h1.mb-2 Tạo mới bài hát
+                    p.text-muted
+                        | Điền thông tin để tạo bài hát mới trong hệ thống.
+
+                .header-actions
+                    button.btn.btn-outline-secondary.mr-2(type="button" onclick="window.location.href='/admin/songs'")
+                        | Hủy
+                    button.btn.btn-primary(type="submit")
+                        | Lưu bài hát
+
+            .row
+                .col-md-6
+                    .form-group
+                        label(for="title")
+                            | Tên bài hát
+                        input#title.form-control(type="text" name="title" placeholder="Nhập tên bài hát..." required)
+
+                .col-md-6
+                    .form-group
+                        label(for="singer")
+                            | Ca sĩ
+                        select#singer.form-control(name="singerId" required)
+                            option(value="" disabled selected) Chọn ca sĩ
+                            option(value=":id") Lê Văn A 
+                            option(value=":id") Lê Văn B
+
+            .row 
+                .col-md-8
+                    .form-group
+                        label(for="topic")
+                            | Chủ đề 
+                        select#topic.form-control(name="topicId" required)
+                            option(value="" disabled selected) Chọn chủ đề
+                            option(value=":id") Pop
+                            option(value=":id") Ballad 
+                .col-md-4
+                    .form-group
+                        label(for="status")
+                            | Trạng thái
+                        select#status.form-control(name="status")
+                            option(value="active")
+                                | Hoạt động (Mặc định)
+                            option(value="inactive")
+                                | Dừng hoạt động 
+
+            .form-group
+                label(for="description")
+                    | Mô tả
+                textarea#description.form-control.textarea-tinymce(name="description" rows="4" placeholder="Mô tả bài hát...")
+            
+            .form-group
+                label(for="lyrics")
+                    | Lyrics
+                textarea#lyrics.form-control.textarea-tinymce(name="lyrics" rows="4" placeholder="Lời bài hát...")
+
+            .row
+                .col-md-6
+                    .form-group
+                        label(for="avatar")
+                            | Ảnh
+                        .upload-box.border.rounded.p-3
+                            p.mb-2
+                                strong Chọn ảnh
+                            input#avatar.form-control-file(type="file" name="avatar" accept="image/*" upload-image-input)                           
+                            small.text-muted
+                                | JPG, PNG tối đa 5MB
+
+                .col-md-6
+                    .form-group
+                        label(for="audio")
+                            | File bài hát
+                        .upload-box.border.rounded.p-3
+                            p.mb-2
+                                strong Chọn file bài hát
+                            input#audio.form-control-file(type="file" name="audio" accept=".mp3,.wav")
+                            small.text-muted
+                                | MP3, WAV tối đa 50MB

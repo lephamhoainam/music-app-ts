@@ -170,3 +170,41 @@ body {
     color: #ffffff;
 }
 /* End badge */
+
+
+/* Create Song */
+.song-form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.page-header h1 {
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+/* form */
+.song-form label {
+    font-weight: 600;
+}
+
+.song-form .form-control {
+    border-radius: 6px;
+}
+
+/* upload */
+.upload-box {
+    background: #f8f9fa;
+    min-height: 180px;
+}
+
+.upload-icon {
+    font-size: 30px;
+}
+
+/* button */
+.header-actions .btn {
+    min-width: 100px;
+}
