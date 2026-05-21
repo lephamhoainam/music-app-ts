@@ -17,13 +17,8 @@ export const index = async (req: Request, res: Response) => {
 
 // [GET] /admin/topics/create
 export const create = async (req: Request, res: Response) => {
-    const topics = await Topic.find({
-        deleted: false 
-    });
-
     res.render("admin/pages/topics/create", {
-        pageTitle: "Thêm mới chủ đề bài hát",
-        topics: topics
+        pageTitle: "Thêm mới chủ đề bài hát"
     });
 }
 

@@ -2,23 +2,23 @@ extends ../../layouts/default.pug
 
 block main 
     .content-wrapper
-        form.song-form(action=`/${prefixAdmin}/topics/create` method="POST" enctype="multipart/form-data")
+        form.song-form(action=`/${prefixAdmin}/singers/create` method="POST" enctype="multipart/form-data")
             .page-header.d-flex.justify-content-between.align-items-start.mb-4
                 .header-left
                     h1.mb-2 #{pageTitle}
 
                 .header-actions
-                    button.btn.btn-outline-secondary.mr-2(type="button" onclick="window.location.href='/admin/topics'")
+                    button.btn.btn-outline-secondary.mr-2(type="button" onclick="window.location.href='/admin/singers'")
                         | Hủy
                     button.btn.btn-primary(type="submit")
-                        | Lưu chủ đề
+                        | Lưu ca sĩ
 
             .row
                 .col-md-8
                     .form-group
-                        label(for="title")
-                            | Tên chủ đề
-                        input#title.form-control(type="text" name="title" placeholder="Nhập tên chủ đề..." required)
+                        label(for="fullname")
+                            | Tên ca sĩ
+                        input#fullname.form-control(type="text" name="fullname" placeholder="Nhập tên ca sĩ..." required)
 
                 .col-md-4
                     .form-group
@@ -29,11 +29,6 @@ block main
                                 | Hoạt động (Mặc định)
                             option(value="inactive")
                                 | Dừng hoạt động 
-
-            .form-group
-                label(for="description")
-                    | Mô tả
-                textarea#description.form-control.textarea-tinymce(name="description" rows="4" placeholder="Mô tả chủ đề...")
 
             .row
                 .col-md-12
