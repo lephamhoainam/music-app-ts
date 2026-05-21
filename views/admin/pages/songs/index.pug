@@ -6,13 +6,14 @@ block main
     .card.mb-3 
         .card-header Danh sách bài hát
         .card-body
-            .row.mb-3
+            .row.mb-3.align-items-center
                 .col-8 
 
                 .col-4.text-right 
-                    a.btn.btn-outline-success(href=`/${prefixAdmin}/songs/create`) + Thêm mới
+                    a.btn.btn-outline-success.shadow-sm(href=`/${prefixAdmin}/songs/create`) 
+                        | + Thêm mới
             
-            table.table.table-hover.table-hover
+            table.table.table-hover
                 thead 
                     tr 
                         th STT 
