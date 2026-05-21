@@ -11,6 +11,14 @@ router.get("/", controller.index);
 
 router.get("/create", controller.create);
 
-router.post("/create", upload.single("avatar"), uploadCloud.uploadSingle, controller.createPost);
+router.post(
+    "/create",
+    upload.fields([
+        { name: 'avatar', maxCount: 1 },
+        { name: 'audio', maxCount: 1 }
+    ]),
+    uploadCloud.uploadfields,
+    controller.createPost
+);
 
 export const songRoute: Router = router;

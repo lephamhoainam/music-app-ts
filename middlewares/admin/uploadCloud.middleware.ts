@@ -12,11 +12,10 @@ cloudinary.config({
 })
 // End cloudinary
 
-
-const streamUpload = (buffer: any) => {
+const streamUpload = (buffer: any, resourceType: "image" | "video" | "auto" | "raw" = "image") => {
     return new Promise<any>((resolve, reject) => {
         let stream = cloudinary.uploader.upload_stream({
-            resource_type: 'auto'
+            resource_type: resourceType
         }, (error, result) => {
             if(error) {
                 reject(error);
@@ -46,5 +45,25 @@ export const uploadSingle = async (req: Request, res: Response, next: NextFuncti
     } catch (error) {
         console.log("Error: ", error);
     }
+    next();
+}
+
+
+export const uploadfields = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const files = req.files as any;
+        for (const key in files) {
+            const file = files[key][0];
+            let resourceType: "image" | "video" = "image";
+            if (key === "audio") {
+                resourceType = "video";
+            }
+            const result: any = await streamUpload(file.buffer, resourceType);
+            req.body[key] = result.secure_url;
+        }
+    } catch (error) {
+        console.log("Error: ", error);
+    }
+   
     next();
 }
