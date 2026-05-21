@@ -1,0 +1,48 @@
+extends ../../layouts/default.pug
+
+block main 
+    .content-wrapper
+        form.song-form(action=`/${prefixAdmin}/topics/create` method="POST" enctype="multipart/form-data")
+            .page-header.d-flex.justify-content-between.align-items-start.mb-4
+                .header-left
+                    h1.mb-2 #{pageTitle}
+
+                .header-actions
+                    button.btn.btn-outline-secondary.mr-2(type="button" onclick="window.location.href='/admin/topics'")
+                        | Hủy
+                    button.btn.btn-primary(type="submit")
+                        | Lưu chủ đề
+
+            .row
+                .col-md-8
+                    .form-group
+                        label(for="title")
+                            | Tên chủ đề
+                        input#title.form-control(type="text" name="title" placeholder="Nhập tên chủ đề..." required)
+
+                .col-md-4
+                    .form-group
+                        label(for="status")
+                            | Trạng thái
+                        select#status.form-control(name="status")
+                            option(value="active")
+                                | Hoạt động (Mặc định)
+                            option(value="inactive")
+                                | Dừng hoạt động 
+
+            .form-group
+                label(for="description")
+                    | Mô tả
+                textarea#description.form-control.textarea-tinymce(name="description" rows="4" placeholder="Mô tả chủ đề...")
+
+            .row
+                .col-md-6
+                    .form-group
+                        label(for="avatar")
+                            | Ảnh
+                        .upload-box.border.rounded.p-3
+                            p.mb-2
+                                strong Chọn ảnh
+                            input#avatar.form-control-file(type="file" name="avatar" accept="image/*" upload-image-input)                           
+                            small.text-muted
+                                | JPG, PNG tối đa 5MB
