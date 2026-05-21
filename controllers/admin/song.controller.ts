@@ -56,17 +56,6 @@ export const create = async (req: Request, res: Response) => {
 
 // [POST] /admin/songs/create
 export const createPost = async (req: Request, res: Response) => {
-    // let avatar = "";
-    // let audio = "";
-
-    // if(req.body.avatar) {
-    //     avatar = req.body.avatar[0];
-    // }
-
-    // if(req.body.audio) {
-    //     audio = req.body.audio[0];
-    // }
-
     const dataSong = {
         title: req.body.title, 
         topicId: req.body.topicId,
@@ -82,4 +71,27 @@ export const createPost = async (req: Request, res: Response) => {
     await song.save();
 
     res.redirect(`/${systemConfig.prefixAdmin}/songs`);
+}
+
+
+// [GET] /admin/songs/detail/:id
+export const detail = async (req: Request, res: Response) => {
+    const song = await Song.findOne({
+        _id: req.params.id
+    }).select("-slug");
+
+    const singer = await Singer.findOne({
+        _id: song?.singerId
+    });
+
+    const topic = await Topic.findOne({
+        _id: song?.topicId
+    });
+
+    res.render("admin/pages/songs/detail", {
+        pageTitle: "Chi tiết bài hát: " + song?.title,
+        song: song,
+        singer: singer,
+        topic: topic
+    });
 }

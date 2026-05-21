@@ -1,0 +1,47 @@
+extends ../../layouts/default.pug
+
+block main
+    .song-detail
+        .card
+            .card-body
+                .row
+                    .col-md-4
+                        .song-image.mb-3
+                            img.w-100.rounded(src=song.avatar alt=song.title)
+                        .song-audio
+                            audio.w-100(controls)
+                                source(src=song.audio type="audio/mpeg")
+
+                    .col-md-8
+                        h2.mb-3 #{song.title}
+                        .mb-3
+                            if(song.status === "active") 
+                                span.status-badge.active Hoạt động
+                            if(song.status === "inactive") 
+                                span.status-badge.inactive Dừng hoạt động
+                        .song-meta.mb-4
+                            .d-flex.align-items-center.mb-4
+                                img.rounded-circle.mr-3(src=singer.avatar width="60" height="60")
+                                div
+                                    p.mb-1.text-muted Ca sĩ
+                                    h5.mb-0 #{singer.fullname}
+
+                            .mb-3
+                                p.mb-1.text-muted Chủ đề
+                                h6.mb-0 #{topic.title}
+
+                            .mb-3
+                                p.mb-1.text-muted Lượt thích
+                                h6.mb-0 #{song.like} lượt thích
+
+                        .song-description
+                            h5.mb-2 Mô tả
+                            p.text-muted
+                                | #{song.description}
+
+                .song-lyrics.mt-4
+                    h4.mb-3 Lyrics
+
+                    .lyrics-box
+                        pre.mb-0
+                            | #{song.lyrics}
