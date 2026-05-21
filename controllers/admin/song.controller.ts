@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 import Song from "../../models/song.model";
 import Topic from "../../models/topic.model";
 import Singer from "../../models/singer.model";
+import { systemConfig } from "../../config/config";
 
 // [GET] /admin/songs
 export const index = async (req: Request, res: Response) => {
@@ -35,7 +36,28 @@ export const index = async (req: Request, res: Response) => {
 
 // [GET] /admin/songs/create
 export const create = async (req: Request, res: Response) => {
+    const topics = await Topic.find({
+        deleted: false,
+        status: "active"
+    }).select("title");
+
+    const singers = await Singer.find({
+        deleted: false,
+        status: "active"
+    }).select("fullname");
+
     res.render("admin/pages/songs/create", {
-        pageTitle: "Tạo mới bài hát"
+        pageTitle: "Tạo mới bài hát",
+        topics: topics,
+        singers: singers
     });
+}
+
+
+// [POST] /admin/songs/create
+export const createPost = async (req: Request, res: Response) => {
+    const song = new Song(req.body);
+    await song.save();
+
+    res.redirect(`/${systemConfig.prefixAdmin}/songs`);
 }

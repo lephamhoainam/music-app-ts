@@ -15,6 +15,9 @@ database.connect();
 const app: Express = express();
 const port: Number | String = process.env.PORT || 3000;
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 app.use(express.static("public")); 
 
 app.set("views", "./views");

@@ -2,7 +2,7 @@ extends ../../layouts/default.pug
 
 block main 
     .content-wrapper
-        form.song-form(action="/songs/create" method="POST" enctype="multipart/form-data")
+        form.song-form(action=`/${prefixAdmin}/songs/create` method="POST" enctype="multipart/form-data")
             .page-header.d-flex.justify-content-between.align-items-start.mb-4
                 .header-left
                     h1.mb-2 Tạo mới bài hát
@@ -28,8 +28,8 @@ block main
                             | Ca sĩ
                         select#singer.form-control(name="singerId" required)
                             option(value="" disabled selected) Chọn ca sĩ
-                            option(value=":id") Lê Văn A 
-                            option(value=":id") Lê Văn B
+                            each item in singers
+                                option(value=item.id) #{item.fullname}
 
             .row 
                 .col-md-8
@@ -37,9 +37,9 @@ block main
                         label(for="topic")
                             | Chủ đề 
                         select#topic.form-control(name="topicId" required)
-                            option(value="" disabled selected) Chọn chủ đề
-                            option(value=":id") Pop
-                            option(value=":id") Ballad 
+                                option(value="" disabled selected) Chọn chủ đề
+                                each item in topics
+                                    option(value=item.id) #{item.title}
                 .col-md-4
                     .form-group
                         label(for="status")
