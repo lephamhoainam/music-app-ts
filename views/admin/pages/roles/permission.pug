@@ -1,0 +1,54 @@
+extends ../../layouts/default.pug
+
+block main 
+    h1.mb-4 #{pageTitle}
+    
+    div.text-left
+        button.btn.btn-outline-success.mb-3.shadow-sm(type="submit" button-submit) Cập nhật 
+
+    if(records)
+        .card.shadow-sm.border-0
+            .card-body.p-0
+                div(data-records=records)
+                    table.table.table-hover.mb-0(table-permissions)
+                        thead.thead-light
+                            tr 
+                                th Tính năng 
+                                each item in records
+                                    th.text-center #{item.title} 
+                        tbody 
+                            tr.d-none(data-name="id")
+                                td
+                                each item in records 
+                                    td.text-center
+                                        input(type="text" value=item.id)
+
+                            //- Chủ đề bài hát
+                            tr.bg-light
+                                td(colspan="4")
+                                    b Chủ đề bài hát
+                            tr(data-name="topic_view")
+                                td Xem 
+                                each item in records
+                                    td.text-center
+                                        input(type="checkbox")
+                            tr(data-name="topic_create")
+                                td Thêm mới 
+                                each item in records
+                                    td.text-center
+                                        input(type="checkbox")
+                            tr(data-name="topic_edit")
+                                td Chỉnh sửa 
+                                each item in records
+                                    td.text-center
+                                        input(type="checkbox")
+                            tr(data-name="topic_delete")
+                                td Xóa 
+                                each item in records
+                                    td.text-center
+                                        input(type="checkbox")
+
+    form#form-change-permissions.d-none(method="POST" action=`/${prefixAdmin}/roles/permissions?_method=PATCH`)
+        div.form-group
+            input.form-control(type="text" name="permissions")
+    script(src="/admin/js/roles.js") 

@@ -5,4 +5,6 @@ import * as controller from "../../controllers/admin/role.controller";
 
 router.get("/", controller.index);
 
+router.get("/permissions", controller.permission);
+
 export const roleRoute: Router = router;
