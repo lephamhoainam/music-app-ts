@@ -35,4 +35,6 @@ router.patch(
     controller.editPatch
 );
 
+router.delete("/delete/:id", controller.deleteItem);
+
 export const songRoute: Router = router;
