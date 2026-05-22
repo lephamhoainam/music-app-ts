@@ -118,3 +118,30 @@ export const edit = async (req: Request, res: Response) => {
         singers: singers
     });
 }
+
+
+// [PATCH] /admin/songs/edit/:id
+export const editPatch = async (req: Request, res: Response) => {
+    const dataSong = {
+        title: req.body.title,
+        singerId: req.body.singerId,
+        topicId: req.body.topicId,
+        status: req.body.status,
+        description: req.body.description,
+        lyrics: req.body.lyrics
+    }
+
+    if(req.body.avatar){
+        (dataSong as any).avatar = req.body.avatar;
+    }
+
+    if(req.body.audio){
+        (dataSong as any).audio = req.body.audio;
+    }
+
+    await Song.updateOne({
+        _id: req.params.id
+    }, dataSong);
+
+    res.redirect(`/${systemConfig.prefixAdmin}/songs`);
+}

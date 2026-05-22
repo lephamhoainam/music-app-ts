@@ -2,7 +2,7 @@ extends ../../layouts/default.pug
 
 block main 
     .content-wrapper
-        form.song-form(action=`/${prefixAdmin}/songs/create?_method=PATCH` method="POST" enctype="multipart/form-data")
+        form.song-form(action=`/${prefixAdmin}/songs/edit/${song.id}?_method=PATCH` method="POST" enctype="multipart/form-data")
             .page-header.d-flex.justify-content-between.align-items-start.mb-4
                 .header-left
                     h1.mb-2 #{pageTitle}
@@ -54,7 +54,7 @@ block main
             .form-group
                 label(for="lyrics")
                     | Lyrics
-                textarea#lyrics.form-control.textarea-tinymce(name="lyrics" rows="4" placeholder="Lời bài hát...") #{song.lyrics}
+                textarea#lyrics.form-control.textarea-tinymce(name="lyrics" rows="4") #{song.lyrics}
 
             .row
                 .col-md-6
