@@ -1,0 +1,24 @@
+extends ../../layouts/default.pug
+
+block main 
+    .content-wrapper
+        form.song-form(action=`/${prefixAdmin}/roles/create` method="POST")
+            .page-header.d-flex.justify-content-between.align-items-start.mb-4
+                .header-left
+                    h1.mb-2 #{pageTitle}
+
+                .header-actions
+                    button.btn.btn-outline-secondary.mr-2(type="button" onclick="window.location.href='/admin/roles'")
+                        | Hủy
+                    button.btn.btn-primary(type="submit")
+                        | Lưu quyền
+
+            .form-group
+                label(for="title")
+                    | Tên quyền
+                input#title.form-control(type="text" name="title" placeholder="Nhập tên quyền..." required)
+
+            .form-group
+                label(for="description")
+                    | Mô tả
+                textarea#description.form-control.textarea-tinymce(name="description" rows="4" placeholder="Mô tả quyền...")

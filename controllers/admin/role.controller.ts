@@ -15,6 +15,15 @@ export const index = async (req: Request, res: Response) => {
     });
 }
 
+
+// [GET] /admin/roles/create
+export const create = async (req: Request, res: Response) => {
+    res.render("admin/pages/roles/create", {
+        pageTitle: "Tạo mới nhóm quyền hệ thống"
+    });
+}
+
+
 // [GET] /admin/roles/permission
 export const permission = async (req: Request, res: Response) => {
     const records = await Role.find({
