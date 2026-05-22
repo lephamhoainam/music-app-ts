@@ -1,0 +1,14 @@
+extends ../../layouts/default.pug
+
+block main 
+    h1.mb-4 #{pageTitle}
+
+    .card.mb-3 
+        .card-header Danh sách chủ đề
+        .card-body
+            .row.mb-3.align-items-center
+                .col-8 
+
+                .col-4.text-right 
+                    a.btn.btn-outline-success.shadow-sm(href=`/${prefixAdmin}/topics/create`) 
+                        | + Thêm mới

@@ -5,6 +5,7 @@ import { dashboardRoute } from "./dashboard.route";
 import { topicRoute } from "./topic.route";
 import { songRoute } from "./song.route";
 import { singerRoute } from "./singer.route";
+import { roleRoute } from "./role.route";
 
 const adminRoute = (app: Express): void => {
     const pathAdmin = systemConfig.prefixAdmin;
@@ -16,6 +17,8 @@ const adminRoute = (app: Express): void => {
     app.use(`/${pathAdmin}/songs`, songRoute);
 
     app.use(`/${pathAdmin}/singers`, singerRoute);
+
+    app.use(`/${pathAdmin}/roles`, roleRoute);
 }
 
 export default adminRoute;
