@@ -23,4 +23,6 @@ router.post(
 
 router.get("/detail/:id", controller.detail);
 
+router.get("/edit/:id", controller.edit);
+
 export const songRoute: Router = router;

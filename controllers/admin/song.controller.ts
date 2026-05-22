@@ -95,3 +95,26 @@ export const detail = async (req: Request, res: Response) => {
         topic: topic
     });
 }
+
+
+// [GET] /admin/songs/edit/:id
+export const edit = async (req: Request, res: Response) => {
+    const song = await Song.findOne({
+        _id: req.params.id
+    });
+
+    const topics = await Topic.find({
+        deleted: false
+    });
+
+    const singers = await Singer.find({
+        deleted: false
+    });
+
+    res.render("admin/pages/songs/edit", {
+        pageTitle: "Chỉnh sửa bài hát",
+        song: song,
+        topics: topics,
+        singers: singers
+    });
+}
