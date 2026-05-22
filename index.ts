@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import * as database from "./config/database";
 import { systemConfig } from "./config/config";
 
+import methodOverride from "method-override";
+
 import path from "path";
 
 import clientRoute from "./routes/client/index.route";
@@ -19,6 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(express.static("public")); 
+app.use(methodOverride("_method"));
 
 app.set("views", "./views");
 app.set("view engine", "pug");

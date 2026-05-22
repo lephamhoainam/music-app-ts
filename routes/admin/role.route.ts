@@ -11,4 +11,6 @@ router.post("/create", controller.createPost);
 
 router.get("/permissions", controller.permission);
 
+router.patch("/permissions", controller.permissionPatch);
+
 export const roleRoute: Router = router;

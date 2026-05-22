@@ -49,3 +49,18 @@ export const permission = async (req: Request, res: Response) => {
         records: records
     });
 }
+
+
+// [PATCH] /admin/roles/permission
+export const permissionPatch = async (req: Request, res: Response) => {
+    const permissions = JSON.parse(req.body.permissions);
+    for (const item of permissions) {
+        await Role.updateOne({
+            _id: item.id
+        }, {
+            permissions: item.permissions
+        });
+    }
+
+    res.redirect(`/${systemConfig.prefixAdmin}/roles/permissions`);
+}
