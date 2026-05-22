@@ -4,7 +4,7 @@ block main
     h1.mb-4 #{pageTitle}
 
     .card.mb-3 
-        .card-header Danh sách chủ đề
+        .card-header Danh sách nhóm quyền 
         .card-body
             .row.mb-3.align-items-center
                 .col-8 
@@ -12,3 +12,25 @@ block main
                 .col-4.text-right 
                     a.btn.btn-outline-success.shadow-sm(href=`/${prefixAdmin}/topics/create`) 
                         | + Thêm mới
+            
+            table.table.table-hover
+                thead 
+                    tr 
+                        th STT 
+                        th Quyền
+                        th Mô tả 
+                        th Hành động 
+
+                tbody 
+                    each item, index in roles 
+                        tr 
+                            td #{index+1} 
+                            td #{item.title} 
+                            td #{item.description}
+                            td 
+                                a.btn.btn-secondary.btn-sm.mr-1(href=`/${prefixAdmin}/topics/detail/${item.id}`) 
+                                    <i class="fa-regular fa-eye"></i> 
+                                a.btn.btn-warning.btn-sm.mr-1(href=`/${prefixAdmin}/topics/edit/${item.id}`)
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                button.btn.btn-danger.btn-sm(button-delete data-id=item.id)
+                                    <i class="fa-solid fa-trash"></i>
