@@ -17,4 +17,6 @@ router.get("/edit/:id", controller.edit);
 
 router.patch("/edit/:id", upload.single("avatar"), uploadCloud.uploadSingle, controller.editPatch);
 
+router.delete("/delete/:id", controller.deleteItem);
+
 export const singerRoute: Router = router;

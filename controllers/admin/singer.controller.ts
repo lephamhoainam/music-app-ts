@@ -69,3 +69,15 @@ export const editPatch = async (req: Request, res: Response) => {
 
     res.redirect(`/${systemConfig.prefixAdmin}/singers`);
 }
+
+
+// [DELETE] /admin/singers/create
+export const deleteItem = async (req: Request, res: Response) => {
+    await Singer.updateOne({
+        _id: req.params.id
+    }, {
+        deleted: true
+    })
+
+    res.redirect(`/${systemConfig.prefixAdmin}/singers`);
+}
