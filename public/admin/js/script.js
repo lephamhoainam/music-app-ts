@@ -1,15 +1,8 @@
-// Ảnh
+// preview image
 const avatarInput = document.querySelector("#avatar");
-if (avatarInput) {
-    const previewImage = document.createElement("img");
+const previewImage = document.querySelector("#previewImage");
 
-    previewImage.style.maxWidth = "200px";
-    previewImage.style.marginTop = "10px";
-    previewImage.style.display = "none";
-    previewImage.style.borderRadius = "6px";
-
-    avatarInput.parentNode.appendChild(previewImage);
-
+if (avatarInput && previewImage) {
     avatarInput.addEventListener("change", function (e) {
         const file = e.target.files[0];
 
@@ -22,7 +15,7 @@ if (avatarInput) {
         }
     });
 }
-// Kết thúc ảnh
+// End preview image
 
 
 // Audio
@@ -50,3 +43,18 @@ if (audioInput) {
     });
 }
 // Kết thúc audio
+
+
+
+// // Preview picture 
+// const uploadInput = document.querySelector("#avatar");
+// const previewImage = document.querySelector("#previewImage");
+
+// uploadInput.addEventListener("change", (e) => {
+//     const file = e.target.files[0];
+
+//     if (file) {
+//         previewImage.src = URL.createObjectURL(file);
+//     }
+// });
+// // End preview picture

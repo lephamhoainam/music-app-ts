@@ -37,3 +37,33 @@ export const createPost = async (req: Request, res: Response) => {
 
     res.redirect(`/${systemConfig.prefixAdmin}/topics`);
 }
+
+
+// [GET] /admin/topics/edit/:id
+export const edit = async (req: Request, res: Response) => {
+    const topic = await Topic.findOne({
+        _id: req.params.id 
+    });
+
+    res.render("admin/pages/topics/edit", {
+        pageTitle: "Chỉnh sửa chủ đề bài hát",
+        topic: topic
+    });
+}
+
+
+// [PATCH] /admin/topics/edit/:id
+export const editPatch = async (req: Request, res: Response) => {
+    const dataEditTopic = {
+        title: req.body.title,
+        avatar: req.body.avatar,
+        description: req.body.description,
+        status: req.body.status
+    }
+
+    await Topic.updateOne({
+        _id: req.params.id
+    }, dataEditTopic);
+
+    res.redirect(`/${systemConfig.prefixAdmin}/topics`);
+}
