@@ -37,3 +37,35 @@ export const createPost = async (req: Request, res: Response) => {
 
     res.redirect(`/${systemConfig.prefixAdmin}/singers`);
 }
+
+
+// [GET] /admin/singers/create
+export const edit = async (req: Request, res: Response) => {
+    const singer = await Singer.findOne({
+        _id: req.params.id
+    });
+
+    res.render("admin/pages/singers/edit", {
+        pageTitle: "Chỉnh sửa ca sĩ",
+        singer: singer
+    });
+}
+
+
+// [PATCH] /admin/singers/create
+export const editPatch = async (req: Request, res: Response) => {
+    const dataSinger = {
+        fullname: req.body.fullname,
+        status: req.body.status
+    }
+
+    if(req.body.avatar) {
+        (dataSinger as any).avatar = req.body.avatar
+    }
+
+    await Singer.updateOne({
+        _id: req.params.id
+    }, dataSinger);
+
+    res.redirect(`/${systemConfig.prefixAdmin}/singers`);
+}
