@@ -24,6 +24,20 @@ export const create = async (req: Request, res: Response) => {
 }
 
 
+// [POST] /admin/roles/create
+export const createPost = async (req: Request, res: Response) => {
+    const dataRole = {
+        title: req.body.title,
+        description: req.body.description
+    }
+
+    const role = new Role(dataRole);
+    await role.save();
+    
+    res.redirect(`/${systemConfig.prefixAdmin}/roles`);
+}
+
+
 // [GET] /admin/roles/permission
 export const permission = async (req: Request, res: Response) => {
     const records = await Role.find({
