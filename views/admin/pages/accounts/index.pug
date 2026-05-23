@@ -18,17 +18,21 @@ block main
                     tr 
                         th STT 
                         th Hình ảnh 
-                        th Tiêu đề 
+                        th Tên
+                        th Email
+                        th Số ĐT
                         th Trạng thái 
                         th Hành động 
                 tbody 
                     if(accounts.length > 0)
-                        each item, index in topics 
+                        each item, index in accounts 
                             tr 
                                 td #{index+1} 
                                 td 
                                     img(src=item.avatar, alt=item.title width="100px" height="auto")
-                                td #{item.title} 
+                                td #{item.fullname} 
+                                td #{item.email}
+                                td #{item.phone}
                                 td
                                     if(item.status === "active")
                                         a.status-badge.active(href="javascript:;") Hoạt động 
