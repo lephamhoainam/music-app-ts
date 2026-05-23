@@ -1,0 +1,47 @@
+extends ../../layouts/default.pug
+
+block main 
+    .content-wrapper
+        form.song-form(action=`/${prefixAdmin}/accounts/create` method="POST" enctype="multipart/form-data")
+            .page-header.d-flex.justify-content-between.align-items-start.mb-4
+                .header-left
+                    h1.mb-2 #{pageTitle}
+
+                .header-actions
+                    button.btn.btn-outline-secondary.mr-2(type="button" onclick="window.location.href='/admin/accounts'")
+                        | Hủy
+                    button.btn.btn-primary(type="submit")
+                        | Lưu tài khoản
+
+            .row
+                .col-md-12
+                    .form-group
+                        label(for="email")
+                            | Email
+                        input#email.form-control(type="email" name="email" placeholder="Nhập tài khoản email..." required)
+                
+            .row
+                .col-md-12
+                    .form-group
+                        label(for="password")
+                            | Password
+                        input#email.form-control(type="password" name="password" placeholder="Nhập mật khẩu..." required)
+
+            .row        
+                .col-md-8
+                    .form-group
+                        label(for="singer")
+                            | Phân quyền
+                        select#singer.form-control(name="singerId" required)
+                            option(value="" disabled selected) Chọn quyền hạn
+                            each item in roles
+                                option(value=item.id) #{item.title} (#{item.description})
+                .col-md-4
+                    .form-group
+                        label(for="status")
+                            | Trạng thái
+                        select#status.form-control(name="status")
+                            option(value="active")
+                                | Hoạt động (Mặc định)
+                            option(value="inactive")
+                                | Dừng hoạt động 

@@ -5,4 +5,6 @@ import * as controller from "../../controllers/admin/account.controller";
 
 router.get("/", controller.index);
 
+router.get("/create", controller.create);
+
 export const accountRoute: Router = router;
