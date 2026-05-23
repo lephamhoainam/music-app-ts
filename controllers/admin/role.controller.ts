@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 
 import Role from "../../models/role.model";
 import { systemConfig } from "../../config/config";
-import { title } from "process";
 
 // [GET] /admin/roles
 export const index = async (req: Request, res: Response) => {
@@ -62,6 +61,18 @@ export const editPatch = async (req: Request, res: Response) => {
     await Role.updateOne({
         _id: req.params.id
     }, dataRole);
+    
+    res.redirect(`/${systemConfig.prefixAdmin}/roles`);
+}
+
+
+// [DELETE] /admin/roles/edit/:id
+export const deleteItem = async (req: Request, res: Response) => {
+    await Role.updateOne({
+        _id: req.params.id
+    }, {
+        deleted: true
+    });
     
     res.redirect(`/${systemConfig.prefixAdmin}/roles`);
 }
