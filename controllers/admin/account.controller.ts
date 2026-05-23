@@ -46,11 +46,24 @@ export const createPost = async (req: Request, res: Response) => {
         email: req.body.email, 
         password: md5(req.body.password),
         roleId: req.body.roleId,
-        status: req.body.status
+        status: req.body.status,
+        fullname: req.body.fullname
     }
 
     const newAccount = new Account(dataAccount);
     await newAccount.save();
+
+    res.redirect(`/${systemConfig.prefixAdmin}/accounts`);
+}
+
+
+// [POST] /admin/accounts/delete/:id
+export const deleteItem = async (req: Request, res: Response) => {
+    await Account.updateOne({
+        _id: req.params.id
+    }, {
+        deleted: true
+    });
 
     res.redirect(`/${systemConfig.prefixAdmin}/accounts`);
 }

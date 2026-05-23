@@ -9,4 +9,6 @@ router.get("/create", controller.create);
 
 router.post("/create", controller.createPost);
 
+router.delete("/delete/:id", controller.deleteItem);
+
 export const accountRoute: Router = router;

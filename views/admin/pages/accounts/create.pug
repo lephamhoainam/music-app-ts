@@ -16,6 +16,13 @@ block main
             .row
                 .col-md-12
                     .form-group
+                        label(for="fullname")
+                            | Họ và tên
+                        input#fullname.form-control(type="text" name="fullname" placeholder="Nhập họ tên..." required)
+            
+            .row
+                .col-md-12
+                    .form-group
                         label(for="email")
                             | Email
                         input#email.form-control(type="email" name="email" placeholder="Nhập tài khoản email..." required)
