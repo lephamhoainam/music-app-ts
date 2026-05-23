@@ -10,7 +10,15 @@ import { systemConfig } from "../../config/config";
 export const index = async (req: Request, res: Response) => {
     const accounts = await Account.find({
         deleted: false
-    });
+    }).select("-password -token");
+
+    for (const account of accounts) {
+        const role = await Role.findOne({
+            _id: account.roleId
+        }).select("title");
+        
+        (account as any).roleName = role;
+    }
 
     res.render("admin/pages/accounts/index", {
         pageTitle: "Tài khoản hệ thống",
