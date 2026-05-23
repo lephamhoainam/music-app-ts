@@ -37,3 +37,10 @@ export const loginPost = async (req: Request, res: Response) => {
         res.redirect(`/${systemConfig.prefixAdmin}/auth/login`);
     } 
 }
+
+
+// [GET] /admin/auth/logout
+export const logout = async (req: Request, res: Response) => {  
+    res.clearCookie("token");
+    res.redirect(`/${systemConfig.prefixAdmin}/auth/login`);
+}
