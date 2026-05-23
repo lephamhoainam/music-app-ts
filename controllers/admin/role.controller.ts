@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 
 import Role from "../../models/role.model";
 import { systemConfig } from "../../config/config";
+import { title } from "process";
 
 // [GET] /admin/roles
 export const index = async (req: Request, res: Response) => {
@@ -33,6 +34,34 @@ export const createPost = async (req: Request, res: Response) => {
 
     const role = new Role(dataRole);
     await role.save();
+    
+    res.redirect(`/${systemConfig.prefixAdmin}/roles`);
+}
+
+
+// [GET] /admin/roles/edit/:id
+export const edit = async (req: Request, res: Response) => {
+    const role = await Role.findOne({
+        _id: req.params.id
+    });
+
+    res.render("admin/pages/roles/edit", {
+        pageTitle: "Chỉnh sửa nhóm quyền hệ thống",
+        role: role
+    });
+}
+
+
+// [PATCH] /admin/roles/edit/:id
+export const editPatch = async (req: Request, res: Response) => {
+    const dataRole = {
+        title: req.body.title,
+        description: req.body.description
+    }
+
+    await Role.updateOne({
+        _id: req.params.id
+    }, dataRole);
     
     res.redirect(`/${systemConfig.prefixAdmin}/roles`);
 }
