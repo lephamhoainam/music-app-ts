@@ -103,30 +103,6 @@ body {
     align-items: center;
     padding-right: 25px;
 }
-
-/* buttons */
-/* account */
-.header .btn-a {
-    background: #3B82F6;
-    color: #ffffff;
-}
-
-.header .btn-a:hover {
-    background: #2563EB;
-    color: #ffffff;
-}
-
-/* logout */
-.header .btn-b {
-    background: #E2E8F0;
-    color: #475569;
-    border: 1px solid #CBD5E1;
-}
-
-.header .btn-b:hover {
-    background: #c7d0da;
-    color: #475569;
-}
 /* End header */
 
 
