@@ -7,6 +7,7 @@ import { systemConfig } from "./config/config";
 import methodOverride from "method-override";
 
 import path from "path";
+import cookieParser from "cookie-parser";
 
 import clientRoute from "./routes/client/index.route";
 import adminRoute from "./routes/admin/index.route";
@@ -31,6 +32,8 @@ app.use('/tinymce', express.static(path.join(__dirname, "node_modules", "tinymce
 
 // App local variable 
 app.locals.prefixAdmin = systemConfig.prefixAdmin;
+
+app.use(cookieParser());
 
 // Route
 clientRoute(app);

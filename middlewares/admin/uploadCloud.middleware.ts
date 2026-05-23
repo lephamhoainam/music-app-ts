@@ -29,13 +29,6 @@ const streamUpload = (buffer: any, resourceType: "image" | "video" | "auto" | "r
     });
 }
 
-
-// const uploadToCloudinary = async (buffer: any) => {
-//     let result = await streamUpload(buffer);
-//     return result;
-// }
-
-
 export const uploadSingle = async (req: Request, res: Response, next: NextFunction) => {
     try {
         if (req.file) {
