@@ -2,7 +2,7 @@ extends ../../layouts/default.pug
 
 block main 
     .content-wrapper
-        form.song-form(action=`/${prefixAdmin}/accounts/create` method="POST" enctype="multipart/form-data")
+        form.song-form(action=`/${prefixAdmin}/accounts/create` method="POST")
             .page-header.d-flex.justify-content-between.align-items-start.mb-4
                 .header-left
                     h1.mb-2 #{pageTitle}
@@ -30,9 +30,9 @@ block main
             .row        
                 .col-md-8
                     .form-group
-                        label(for="singer")
+                        label(for="roleId")
                             | Phân quyền
-                        select#singer.form-control(name="singerId" required)
+                        select#singer.form-control(name="roleId" required)
                             option(value="" disabled selected) Chọn quyền hạn
                             each item in roles
                                 option(value=item.id) #{item.title} (#{item.description})
