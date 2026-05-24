@@ -50,8 +50,14 @@ export const createPost = async (req: Request, res: Response) => {
         fullname: req.body.fullname
     }
 
-    const newAccount = new Account(dataAccount);
-    await newAccount.save();
+    const emailExist = await Account.find({
+        email: dataAccount.email
+    });
+
+    if(!emailExist) {
+        const newAccount = new Account(dataAccount);
+        await newAccount.save();
+    }
 
     res.redirect(`/${systemConfig.prefixAdmin}/accounts`);
 }
