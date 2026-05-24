@@ -1,10 +1,12 @@
 {
     "compilerOptions": {
-        "outDir": "js", // Chuyển file được biên dịch vào thư mục js
+        "outDir": "dist", // Chuyển file được biên dịch vào thư mục dist
+        "rootDir": ".",
         "target": "ES6", // Chuyển code typescript sang kiểu ES6
         "module": "commonjs", // Là tiêu chuẩn đc sử dụng trong node.js
         "removeComments": true, // Xóa comment khi biên dịch sang ES6
         "esModuleInterop": true // Được phép dùng từ khóa import
     },
-    "include": ["**/*.ts", "**/*.d.ts"]
+    "include": ["**/*.ts", "**/*.d.ts"],
+    "exclude": ["node_modules", "dist"]
 }
