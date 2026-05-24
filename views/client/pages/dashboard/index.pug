@@ -1,0 +1,30 @@
+extends ../../layouts/default
+
+block main
+    .container.mt-4
+        h2.mb-4 Bài hát được yêu thích nhất
+
+        .row
+            each item in songs
+                .col-xl-3.col-lg-4.col-md-6.mb-4
+                    .card.h-100.shadow-sm
+                        
+                        a(href=`/songs/detail/${item.slug}`)
+                            img.card-img-top(
+                                src=item.avatar
+                                alt=item.title
+                                style="height: 220px; object-fit: cover;"
+                            )
+
+                        .card-body
+                            h5.card-title
+                                a.text-dark.text-decoration-none(
+                                    href=`/songs/detail/${item.slug}`
+                                )= item.title
+
+                            p.text-muted.mb-2
+                                | #{item.like} lượt thích 
+
+                            p.mb-0
+                                b Ca sĩ:
+                                |  #{item.singer.fullname}

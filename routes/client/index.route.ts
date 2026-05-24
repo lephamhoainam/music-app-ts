@@ -3,6 +3,7 @@ import { topicRoute } from "./topic.route";
 import { songRoute } from "./song.route";
 import { favoriteSongRoute } from "./favorite-song.route";
 import { searchRoute } from "./search.route";
+import { dashboardRoute } from "./dashboard.route";
 
 const clientRoute = (app: Express): void => {
     app.use(`/topics`, topicRoute);
@@ -10,6 +11,8 @@ const clientRoute = (app: Express): void => {
     app.use(`/songs`, songRoute);
 
     app.use(`/favorite-songs`, favoriteSongRoute);
+
+    app.use(`/`, dashboardRoute);
 
     app.use(`/search`, searchRoute);
 }
