@@ -1,15 +1,14 @@
 extends ../../layouts/default.pug
 
 block main 
-    p #{user}
     .content-wrapper
-        form.song-form(action=`/${prefixAdmin}/accounts/create` method="POST")
+        form.song-form(action=`/${prefixAdmin}/my-account` method="POST" enctype="multipart/form-data")
             .page-header.d-flex.justify-content-between.align-items-start.mb-4
                 .header-left
                     h1.mb-2 #{pageTitle}
 
                 .header-actions
-                    button.btn.btn-outline-secondary.mr-2(type="button" onclick="window.location.href='/admin/accounts'")
+                    button.btn.btn-outline-secondary.mr-2(type="button" onclick="window.location.href='/admin/my-account'")
                         | Hủy
                     button.btn.btn-primary(type="submit")
                         | Lưu tài khoản
