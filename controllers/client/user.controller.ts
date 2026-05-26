@@ -38,3 +38,20 @@ export const login = async (req: Request, res: Response) => {
         pageTitle: "Đăng nhập"
     });
 }
+
+
+// [POST] /user/login
+export const loginPost = async (req: Request, res: Response) => {
+    const { email, password } = req.body;
+    const existEmail = await User.findOne({
+        deleted: false,
+        status: "active",
+        email: email
+    });
+
+    if(existEmail) {
+        res.cookie("tokenUser", existEmail.tokenUser);
+    }
+
+    res.redirect("/");
+}
