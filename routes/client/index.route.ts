@@ -4,6 +4,7 @@ import { songRoute } from "./song.route";
 import { favoriteSongRoute } from "./favorite-song.route";
 import { searchRoute } from "./search.route";
 import { dashboardRoute } from "./dashboard.route";
+import { userRoute } from "./user.route";
 
 const clientRoute = (app: Express): void => {
     app.use(`/topics`, topicRoute);
@@ -15,6 +16,8 @@ const clientRoute = (app: Express): void => {
     app.use(`/`, dashboardRoute);
 
     app.use(`/search`, searchRoute);
+
+    app.use(`/user`, userRoute);
 }
 
 export default clientRoute;

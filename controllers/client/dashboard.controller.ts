@@ -6,7 +6,7 @@ import Singer from "../../models/singer.model";
 
 export const index = async (req: Request, res: Response) => {
     const songs = await Song.find({
-        deleted: false, 
+        deleted: false,
         status: "active"
     })
     .sort({
@@ -15,12 +15,9 @@ export const index = async (req: Request, res: Response) => {
     .limit(10);
 
     for (const song of songs) {
-        const singer = await Singer.findOne({
-            _id: song.singerId
-        }).select("fullname");
+        const singer = await Singer.findById(song.singerId).select("fullname");
         (song as any).singer = singer;
     }
-
 
     res.render("client/pages/dashboard/index", {
         pageTitle: "Trang chủ",

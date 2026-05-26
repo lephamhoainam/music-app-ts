@@ -31,3 +31,13 @@ header.header
                             a(href="/topics") Chủ đề
                         li 
                             a(href="/favorite-songs") Yêu thích
+                        if(user)
+                            li
+                                a(href="/user/info") #{user.fullname}
+                            li
+                                a(href="/user/logout") Đăng xuất
+                        else 
+                            li
+                                a(href="/user/login") Đăng Nhập
+                            li
+                                a(href="/user/register") Đăng ký
