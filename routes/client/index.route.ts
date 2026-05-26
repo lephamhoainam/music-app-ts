@@ -6,7 +6,11 @@ import { searchRoute } from "./search.route";
 import { dashboardRoute } from "./dashboard.route";
 import { userRoute } from "./user.route";
 
+import * as userMiddleware from "../../middlewares/client/user.middleware";
+
 const clientRoute = (app: Express): void => {
+    app.use(userMiddleware.userRequire);
+
     app.use(`/topics`, topicRoute);
 
     app.use(`/songs`, songRoute);
