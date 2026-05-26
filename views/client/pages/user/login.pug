@@ -5,8 +5,8 @@ block main
         .card.shadow-sm(style="width: 420px; border: none; border-radius: 12px;")
             .card-body.p-4
                 .text-center.mb-4
-                    h2.font-weight-bold Đăng ký
-                    p.text-muted.mb-0 Vui lòng nhập thông tin đăng ký
+                    h2.font-weight-bold Đăng nhập
+                    p.text-muted.mb-0 Vui lòng nhập thông tin đăng nhập
 
                 form(action=`/user/register` method="POST")
                     .form-group.mb-3
@@ -28,7 +28,7 @@ block main
                         )
 
                     button.btn.btn-primary.btn-block(type="submit")
-                        | Đăng ký
+                        | Đăng nhập
 
                 .text-center.mt-3
-                    a(href="/user/login") Đã có tài khoản? Bấm vào đây
+                    a(href="/user/register") Chưa có tài khoản? Bấm vào đây

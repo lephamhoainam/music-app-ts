@@ -7,4 +7,6 @@ router.get("/register", controller.register);
 
 router.post("/register", controller.registerPost);
 
+router.get("/login", controller.login);
+
 export const userRoute: Router = router;
