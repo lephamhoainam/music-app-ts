@@ -14,3 +14,15 @@ export const index = async (req: Request, res: Response) => {
         users: users
     });
 }
+
+
+// [GET] /admin/users
+export const deletePatch = async (req: Request, res: Response) => {
+    await User.updateOne({
+        _id: req.params.id
+    }, {
+        deleted: true
+    });
+
+    res.redirect(`/${systemConfig.prefixAdmin}/users`);
+}
