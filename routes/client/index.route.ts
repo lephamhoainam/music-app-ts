@@ -9,7 +9,7 @@ import { userRoute } from "./user.route";
 import * as userMiddleware from "../../middlewares/client/user.middleware";
 
 const clientRoute = (app: Express): void => {
-    app.use(userMiddleware.userRequire);
+    app.use(userMiddleware.infoUser);
 
     app.use(`/topics`, topicRoute);
 

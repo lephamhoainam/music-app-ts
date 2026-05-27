@@ -55,3 +55,12 @@ export const loginPost = async (req: Request, res: Response) => {
 
     res.redirect("/");
 }
+
+
+// [GET] /user/logout
+export const logout = async (req: Request, res: Response) => {
+    res.clearCookie("tokenUser");
+    res.redirect("/");
+}
+
+
