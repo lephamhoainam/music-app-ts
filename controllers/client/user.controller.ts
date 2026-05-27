@@ -69,9 +69,38 @@ export const logout = async (req: Request, res: Response) => {
 
 
 // [GET] /user/info
-export const info = async (req: Request, res: Response) => {
-    
+export const info = async (req: Request, res: Response) => {  
     res.render("client/pages/user/info", {
         pageTitle: "Thông tin cá nhân"
     });
+}
+
+
+// [POST] /user/info
+export const infoPost = async (req: Request, res: Response) => { 
+    const userId = res.locals.user;
+    const updatedData: any= {};
+
+    // Loại bỏ field rỗng
+    Object.keys(req.body).forEach((key) => {
+        if(req.body[key] === '')
+            delete req.body[key];
+    });
+    // Kết thúc loại bỏ field rỗng
+
+    // Thêm filed đã thay đổi vào object
+    for (const key in req.body) {
+        if(String(req.body[key]) !== String(userId[key])) {
+            updatedData[key] = req.body[key];
+        }
+    }
+    // Kết thúc thêm filed đã thay đổi vào object
+
+    if(Object.keys(updatedData).length > 0) {
+        await User.updateOne({
+            _id: userId._id
+        }, updatedData);
+    }
+
+    res.redirect("/user/info");
 }
