@@ -23,9 +23,13 @@ export const registerPost = async (req: Request, res: Response) => {
         return;
     }
 
-    req.body.password = md5(req.body.password);
+    const dataRegister = {
+        fullname: req.body.fullname,
+        email: req.body.email,
+        password: md5(req.body.fullname)
+    }
 
-    const newUser = new User(req.body);
+    const newUser = new User(dataRegister);
     await newUser.save();
 
     res.redirect("/user/login");

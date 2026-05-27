@@ -10,6 +10,15 @@ block main
 
                 form(action=`/user/register` method="POST")
                     .form-group.mb-3
+                        label(for="fullname") Họ và tên
+                        input#fullname.form-control(
+                            type="text"
+                            name="fullname"
+                            placeholder="Nhập họ và tên..."
+                            required
+                        )
+
+                    .form-group.mb-3
                         label(for="email") Email
                         input#email.form-control(
                             type="email"
