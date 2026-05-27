@@ -212,3 +212,23 @@ if(boxSearch) {
     });
 }
 // End box-search
+
+
+// preview image
+const avatarInput = document.querySelector("#avatar");
+const previewImage = document.querySelector("#previewImage");
+
+if (avatarInput && previewImage) {
+    avatarInput.addEventListener("change", function (e) {
+        const file = e.target.files[0];
+
+        if (file) {
+            previewImage.src = URL.createObjectURL(file);
+            previewImage.style.display = "block";
+        } else {
+            previewImage.src = "";
+            previewImage.style.display = "none";
+        }
+    });
+}
+// End preview image

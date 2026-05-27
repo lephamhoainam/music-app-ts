@@ -14,6 +14,6 @@ router.post("/login", controller.loginPost);
 
 router.get("/logout", controller.logout);
 
-// router.get("/info", userMiddleware.userRequire, controller.info);
+router.get("/info", authMiddleware.authRequire, controller.info);
 
 export const userRoute: Router = router;

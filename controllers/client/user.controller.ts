@@ -68,3 +68,10 @@ export const logout = async (req: Request, res: Response) => {
 }
 
 
+// [GET] /user/info
+export const info = async (req: Request, res: Response) => {
+    
+    res.render("client/pages/user/info", {
+        pageTitle: "Thông tin cá nhân"
+    });
+}
